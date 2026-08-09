@@ -170,5 +170,47 @@ Island Breakout runs successfully with the tropical background and custom paddle
 - Screenshot filename: Part3_CustomTropicalPaddle_Working.png
 - Document updated: DailyBuildLog.md
 - Commit message: Customize paddle with Island Breakout artwork
+- Commit ID: 2e08e20
+## Session 5
+
+- Date: August 8, 2026
+- Start time: [your actual start time]
+- Stop time: [your actual stop time]
+- Selected pathway: Breakout
+- Goal for this session: Complete Tutorial Part 4 and implement the game ball.
+
+### Work Completed
+
+- Completed Tutorial Part 4 - The Ball.
+- Created the BALL object.
+- Added the ball size, fill, stroke, and position settings.
+- Added BALL_TRANSLATE for positioning and movement.
+- Created the DrawBall() procedure.
+- Added the ball to MainCanvas.
+- Added DrawBall() to the game startup.
+- Tested the ball in Island Breakout.
+
+### Working Checkpoint
+
+Island Breakout opens successfully with the tropical background and custom tropical paddle. The ball displays correctly in the game window, and the paddle movement from Part 3 continues to work.
+
+### Problem and Evidence
+
+- Error or problem: No major problem encountered during Part 4.
+- File and line, scene, object, or setting involved: MainWindow.xaml.vb / DrawBall().
+- Error message or visible behavior: No error; the ball displayed successfully.
+- Resource, classmate, instructor, AI assistant, or documentation used: Breakout Tutorial Part 4 and AI assistant.
+
+### Fix or Next Test
+
+- Change made: Added the ball object, DrawBall() procedure, positioning, and transform settings from the tutorial.
+- Result: The ball displays successfully in Island Breakout.
+- Next test: Customize the tutorial ball with Island Breakout artwork.
+
+### Evidence Saved
+
+- Screenshot filename: Part4_Ball_Working.png
+- Document updated: DailyBuildLog.md
+- Commit message: Complete Tutorial Part 4 and implement game ball
 - Commit ID: Pending
 Copy the session section for each work period.

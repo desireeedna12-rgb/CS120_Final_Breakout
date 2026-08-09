@@ -15,23 +15,41 @@ Class MyWindow
     Private Move_Left As Boolean = False
     Private Move_Right As Boolean
 
-
+    Private BALL As New Ellipse
+    Private BALL_BUFFER As Double = 5
+    Private BALL_TRANSLATE As New TranslateTransform(0, 0)
+    Private BALL_SPEED_Y As Double = 5
+    Private BALL_SPEED_X As Double = 5
 
     Sub New()
         InitializeComponent()
         DrawPaddle()
+        DrawBall()
         GameLoop.Interval = TimeSpan.FromMilliseconds(1)
         AddHandler GameLoop.Tick, AddressOf UpdateLoop
-
-
-
 
         GameLoop.Start()
     End Sub
 
     Private Sub UpdateLoop(Sender As Object, e As EventArgs)
         MovePaddle()
+        MoveBall()
 
+
+    End Sub
+    Private Sub DrawBall()
+        With BALL
+            .Fill = Brushes.Red
+            .StrokeThickness = 2
+            .Stroke = Brushes.Black
+            .Width = 20
+            .Height = 20
+            .RenderTransform = BALL_TRANSLATE
+        End With
+
+        BALL_TRANSLATE.X = (MainCanvas.Width / 2)
+        BALL_TRANSLATE.Y = MainCanvas.Height / 2
+        MainCanvas.Children.Add(BALL)
 
     End Sub
 
@@ -43,7 +61,6 @@ Class MyWindow
         Dim paddleImage As New BitmapImage(
        New Uri(imagePath, UriKind.Absolute)
       )
-
 
         With PADDLE
             .Fill = New ImageBrush(paddleImage)
@@ -60,6 +77,13 @@ Class MyWindow
         PADDLE_TRANSLATE.Y = MainCanvas.Height - PADDLE.Height - PADDLE_DISTANCE_FROM_BOTTOM
         MainCanvas.Children.Add(PADDLE)
     End Sub
+    Private Sub MoveBall()
+        BALL_TRANSLATE.X += BALL_SPEED_X
+        BALL_TRANSLATE.Y += BALL_SPEED_Y
+        BALL.RenderTransform = BALL_TRANSLATE
+
+    End Sub
+
     Private Sub MovePaddle()
 
         If Move_Left Then
