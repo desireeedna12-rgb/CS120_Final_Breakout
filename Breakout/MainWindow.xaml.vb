@@ -22,10 +22,16 @@ Class MyWindow
     Private BALL_SPEED_Y As Double = 5
     Private BALL_SPEED_X As Double = 5
 
+    Private WALL_TOP As Double = 0
+    Private WALL_LEFT As Double = 0
+    Private WALL_RIGHT As Double = 0
+    Private WALL_BOTTOM As Double = 0
+
     Sub New()
         InitializeComponent()
         DrawPaddle()
         DrawBall()
+        SETWALLS()
         GameLoop.Interval = TimeSpan.FromMilliseconds(1)
         AddHandler GameLoop.Tick, AddressOf UpdateLoop
 
@@ -45,8 +51,25 @@ Class MyWindow
         Dim pt As Point = New Point(BALL_TRANSLATE.X, BALL_TRANSLATE.Y)
         VisualTreeHelper.HitTest(MainCanvas, Nothing, New HitTestResultCallback(AddressOf MyHitTestResult), New PointHitTestParameters(pt))
 
+        If BALL_TRANSLATE.Y < WALL_TOP And BALL_SPEED_Y < 0 Then
+            BALL_SPEED_Y *= -1
 
+        End If
 
+        If BALL_TRANSLATE.X <= WALL_LEFT And BALL_SPEED_X < 0 Then
+            BALL_SPEED_X *= -1
+        End If
+
+        If BALL_TRANSLATE.X <= WALL_RIGHT And BALL_SPEED_X > 0 Then
+            BALL_SPEED_X *= -1
+        End If
+
+        If BALL_TRANSLATE.Y > WALL_BOTTOM Then
+
+            BALL_TRANSLATE.Y = 0
+            BALL_TRANSLATE.X = 0
+
+        End If
 
     End Sub
     Public Function MyHitTestResult(ByVal result As HitTestResult) As HitTestResultBehavior
@@ -78,8 +101,8 @@ Class MyWindow
             .Fill = New ImageBrush(ballImage)
             .StrokeThickness = 2
             .Stroke = Brushes.Pink
-            .Width = 28
-            .Height = 28
+            .Width = 26
+            .Height = 26
             .RenderTransform = BALL_TRANSLATE
         End With
 
@@ -116,6 +139,12 @@ Class MyWindow
         BALL_TRANSLATE.X += BALL_SPEED_X
         BALL_TRANSLATE.Y += BALL_SPEED_Y
         BALL.RenderTransform = BALL_TRANSLATE
+    End Sub
+    Private Sub SETWALLS()
+        WALL_RIGHT = MainCanvas.Width - (BALL.Width + BALL_BUFFER)
+        WALL_TOP += BALL.Height
+        WALL_BOTTOM = MainCanvas.Height
+
     End Sub
 
     Private Sub MovePaddle()

@@ -294,5 +294,49 @@ Island Breakout runs successfully with the tropical background, custom tropical 
 - Screenshot filename: Part5_CollisionHitTest_Working.png
 - Document updated: DailyBuildLog.md
 - Commit message: Complete Tutorial Part 5 and implement collision hit test
-- Commit ID: Pending
+- Commit ID:  8a3993b
+## Session [8]
+
+- Date: August 8, 2026
+- Start time: 11:07 pm
+- Stop time: 11:35 pm
+- Selected pathway: Breakout
+- Goal for this session: Complete Tutorial Part 6 and implement wall collision for the ball.
+
+### Work Completed
+
+- Completed Tutorial Part 6 - Wall Collision.
+- Added collision detection for the game boundaries.
+- Added logic to detect when the ball reaches the left and right walls.
+- Reversed the ball's horizontal direction when it hits a side wall.
+- Added logic to detect when the ball reaches the top wall.
+- Reversed the ball's vertical direction when it hits the top wall.
+- Kept the existing paddle collision and directional bounce logic from Part 5.
+- Tested the ball movement to make sure it correctly bounces off the walls.
+- Confirmed that the custom tropical ball, paddle, and background continued working correctly.
+
+### Working Checkpoint
+
+Island Breakout runs successfully with wall collision implemented. The custom tropical ball now bounces off the left, right, and top boundaries of the game while continuing to interact correctly with the tropical paddle. The existing custom artwork, ball movement, and paddle collision systems remain functional.
+
+### Problem and Evidence
+
+- Error or problem: No major error encountered while implementing wall collision.
+- File and line, scene, object, or setting involved: MainWindow.xaml.vb / ball movement and wall collision logic.
+- Error message or visible behavior: No error; the ball successfully changed direction when reaching the game boundaries.
+- Resource, classmate, instructor, AI assistant, or documentation used: Breakout Tutorial Part 6 and AI assistant.
+
+### Fix or Next Test
+
+- Change made: Added boundary checks and direction changes for the ball when it reaches the left, right, and top walls.
+- Result: The ball now successfully bounces off the game boundaries while maintaining the existing paddle collision behavior.
+- Next test: Continue to the next Breakout tutorial section and add the next required gameplay feature.
+
+### Evidence Saved
+
+- Screenshot filename: Part6_WallCollision_Working.png
+- Document updated: DailyBuildLog.md
+- Commit message: Complete Tutorial Part 6 and implement wall collision
+- Commit ID: [ADD COMMIT ID]
+
 Copy the session section for each work period.
