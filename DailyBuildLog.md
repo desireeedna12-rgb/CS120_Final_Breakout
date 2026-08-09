@@ -252,5 +252,47 @@ Island Breakout runs successfully with the tropical background, custom paddle ar
 - Screenshot filename: Part4_CustomTropicalBall_Working.png
 - Document updated: DailyBuildLog.md
 - Commit message: Customize ball with Island Breakout artwork
-- Commit ID: [add after commit]
+- Commit ID: 29d86f0
+## Session [7]
+
+- Date: August 8, 2026
+- Start time: 10:49 pm
+- Stop time: 11:07 pm
+- Selected pathway: Breakout
+- Goal for this session: Complete Tutorial Part 5 and implement collision hit testing for the ball and paddle.
+
+### Work Completed
+
+- Completed Tutorial Part 5 - Collision Hit Test.
+- Added collision checking for the ball.
+- Used the ball position to perform a hit test on MainCanvas.
+- Added the hit test callback function.
+- Added paddle collision detection using the existing Rectangle object.
+- Reversed the ball's vertical direction when it hits the paddle.
+- Added directional bounce logic based on where the ball hits the paddle.
+- Tested the collision behavior during gameplay.
+
+### Working Checkpoint
+
+Island Breakout runs successfully with the tropical background, custom tropical paddle, and custom tropical ball. The ball can detect the paddle and reacts to the collision by changing direction while keeping the existing custom artwork and movement systems working.
+
+### Problem and Evidence
+
+- Error or problem: No major error encountered while completing the collision hit test.
+- File and line, scene, object, or setting involved: MainWindow.xaml.vb / Check_Collision() and MyHitTestResult().
+- Error message or visible behavior: No error; the paddle collision test worked during gameplay.
+- Resource, classmate, instructor, AI assistant, or documentation used: Breakout Tutorial Part 5 and AI assistant.
+
+### Fix or Next Test
+
+- Change made: Added the ball hit test, collision callback, paddle detection, and directional bounce logic from Tutorial Part 5.
+- Result: The ball now detects and reacts to paddle collisions successfully.
+- Next test: Begin Tutorial Part 6 and implement wall collision.
+
+### Evidence Saved
+
+- Screenshot filename: Part5_CollisionHitTest_Working.png
+- Document updated: DailyBuildLog.md
+- Commit message: Complete Tutorial Part 5 and implement collision hit test
+- Commit ID: Pending
 Copy the session section for each work period.

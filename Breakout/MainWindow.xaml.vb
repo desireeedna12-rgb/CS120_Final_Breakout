@@ -1,5 +1,6 @@
 ﻿Imports System.Windows.Threading
 Imports System.Windows.Media.Imaging
+Imports System.Drawing.Text
 Class MyWindow
 
 
@@ -34,9 +35,37 @@ Class MyWindow
     Private Sub UpdateLoop(Sender As Object, e As EventArgs)
         MovePaddle()
         MoveBall()
+        Check_Collision()
+
+    End Sub
+
+    Private Sub Check_Collision()
+
+        'Retrieve the coordinate of the ball's postion
+        Dim pt As Point = New Point(BALL_TRANSLATE.X, BALL_TRANSLATE.Y)
+        VisualTreeHelper.HitTest(MainCanvas, Nothing, New HitTestResultCallback(AddressOf MyHitTestResult), New PointHitTestParameters(pt))
+
+
 
 
     End Sub
+    Public Function MyHitTestResult(ByVal result As HitTestResult) As HitTestResultBehavior
+
+        If result.VisualHit.GetType() Is GetType(Rectangle) Then
+            ' Hits the paddle here
+            BALL_SPEED_Y *= -1
+            'Code directional ball
+            'check distance of ball from center of paddle
+            Dim centerOfPaddleX As Double = PADDLE_TRANSLATE.X + CENTER_OF_PADDLE
+            Dim ballDistFromPaddleCenterX As Double = BALL_TRANSLATE.X - centerOfPaddleX
+            'will determine the angle the ball will move as it is hit by the paddle
+            BALL_SPEED_X += ballDistFromPaddleCenterX * 0.05
+
+        End If
+
+        Return HitTestResultBehavior.Continue
+    End Function
+
     Private Sub DrawBall()
 
         Dim imagePath As String =
@@ -57,7 +86,6 @@ Class MyWindow
         BALL_TRANSLATE.X = (MainCanvas.Width / 2)
         BALL_TRANSLATE.Y = MainCanvas.Height / 2
         MainCanvas.Children.Add(BALL)
-
     End Sub
 
     Private Sub DrawPaddle()
@@ -88,7 +116,6 @@ Class MyWindow
         BALL_TRANSLATE.X += BALL_SPEED_X
         BALL_TRANSLATE.Y += BALL_SPEED_Y
         BALL.RenderTransform = BALL_TRANSLATE
-
     End Sub
 
     Private Sub MovePaddle()
