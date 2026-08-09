@@ -86,6 +86,89 @@ Island Breakout opens and runs successfully with the custom tropical background.
 - Screenshot filename: Part2_GameLoop_Working.png
 - Document updated: DailyBuildLog.md
 - Commit message: Complete Tutorial Part 2 and implement game loop
+- Commit ID: d8dbecf
+
+## Session [3]
+
+- Date: August 8, 2026
+- Start time: 7:30pm
+- Stop time: 8:23pm
+- Selected pathway: Breakout
+- Goal for this session: Complete Tutorial Part 3 and implement paddle creation and movement.
+
+### Work Completed
+
+- Completed Tutorial Part 3 - The Paddle.
+- Created the paddle as a Rectangle.
+- Set the paddle size, stroke, fill, and starting position.
+- Added a TranslateTransform for paddle movement.
+- Added paddle speed and position variables.
+- Added keyboard controls for A and D.
+- Added KeyDown and KeyUp handling.
+- Connected MovePaddle() to the game loop.
+- Tested the paddle movement successfully.
+
+### Working Checkpoint
+
+Island Breakout runs successfully with the tropical background. The paddle appears near the bottom of the game window, moves left with A, moves right with D, and stops when the key is released.
+
+### Problem and Evidence
+
+- Error or problem: Paddle keyboard input did not work at first.
+- File and line, scene, object, or setting involved: MainWindow.xaml and MainWindow.xaml.vb.
+- Error message or visible behavior: The paddle displayed correctly but did not respond to A or D.
+- Resource, classmate, instructor, AI assistant, or documentation used: Breakout Tutorial Part 3 and AI assistant.
+
+### Fix or Next Test
+
+- Change made: Connected the KeyDown and KeyUp events, added MovePaddle() to the UpdateLoop, and verified the movement Boolean variables.
+- Result: The paddle now moves left and right and stops when the key is released.
+- Next test: Begin Tutorial Part 4 and create the ball.
+
+### Evidence Saved
+
+- Screenshot filename: Part3_PaddleMovement_Working.png
+- Document updated: DailyBuildLog.md
+- Commit message: Complete Tutorial Part 3 and implement paddle movement
 - Commit ID: Pending
 
+## Session [4]
+
+- Date: August 8, 2026
+- Start time: 8:30
+- Stop time: [your actual stop time]
+- Selected pathway: Breakout
+- Goal for this session: Replace the temporary tutorial paddle appearance with the custom Island Breakout tropical paddle artwork.
+
+### Work Completed
+
+- Kept the existing paddle movement and collision rectangle from Tutorial Part 3.
+- Added the custom tropical paddle image to the project.
+- Changed the paddle appearance from a solid color fill to an image-based fill.
+- Preserved the existing paddle size, movement, position, and game-loop logic.
+- Tested the customized paddle during gameplay.
+
+### Working Checkpoint
+
+Island Breakout runs successfully with the tropical background and custom paddle artwork. The tropical paddle moves left with A, moves right with D, and stops when the key is released while keeping the same movement logic from Tutorial Part 3.
+
+### Problem and Evidence
+
+- Error or problem: The original tutorial paddle used a solid Rectangle fill instead of the planned tropical artwork.
+- File and line, scene, object, or setting involved: MainWindow.xaml.vb / DrawPaddle().
+- Error message or visible behavior: The paddle worked correctly but did not match the Island Breakout visual design.
+- Resource, classmate, instructor, AI assistant, or documentation used: Breakout Tutorial Part 3, Island Breakout sprite sheet, and AI assistant.
+
+### Fix or Next Test
+
+- Change made: Replaced the temporary paddle fill with the custom tropical paddle image while keeping the same Rectangle object and movement logic.
+- Result: The paddle now matches the Island Breakout theme and still moves correctly.
+- Next test: Begin Tutorial Part 4 and create the game ball.
+
+### Evidence Saved
+
+- Screenshot filename: Part3_CustomTropicalPaddle_Working.png
+- Document updated: DailyBuildLog.md
+- Commit message: Customize paddle with Island Breakout artwork
+- Commit ID: Pending
 Copy the session section for each work period.

@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Breakout"
         mc:Ignorable="d" Height="400" Width="525" 
-        Title="Island Breakout">
+        Title="Island Breakout" 
+        KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
     <Window.Background>
         <ImageBrush ImageSource="/IslandBackground.png"/>
     </Window.Background>
-    <Canvas Name="MainCanvas">
+    <Canvas Name="MainCanvas" Height="400" Width="525">
 
 
     </Canvas>
