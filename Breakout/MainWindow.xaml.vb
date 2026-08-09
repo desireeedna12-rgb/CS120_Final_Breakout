@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Threading
+Imports System.Windows.Media.Imaging
 Class MyWindow
 
 
@@ -36,12 +37,20 @@ Class MyWindow
 
     Private Sub DrawPaddle()
 
+        Dim imagePath As String =
+        IO.Path.Combine(AppContext.BaseDirectory, "IslandPaddle.png")
+
+        Dim paddleImage As New BitmapImage(
+       New Uri(imagePath, UriKind.Absolute)
+      )
+
+
         With PADDLE
-            .Fill = Brushes.Black
-            .Stroke = Brushes.Wheat
+            .Fill = New ImageBrush(paddleImage)
+            .Stroke = Brushes.Pink
             .StrokeThickness = 2
-            .Width = 124
-            .Height = 20
+            .Width = 140
+            .Height = 100
             .RenderTransform = PADDLE_TRANSLATE
             CENTER_OF_PADDLE = .Width / 2
         End With

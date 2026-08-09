@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="IslandBackground.png" />
+    <None Remove="IslandPaddle.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,9 @@
     <Resource Include="IslandBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Content Include="IslandPaddle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
