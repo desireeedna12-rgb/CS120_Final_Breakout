@@ -38,12 +38,19 @@ Class MyWindow
 
     End Sub
     Private Sub DrawBall()
+
+        Dim imagePath As String =
+        IO.Path.Combine(AppContext.BaseDirectory, "IslandBall.png")
+
+        Dim ballImage As New BitmapImage(
+        New Uri(imagePath, UriKind.Absolute))
+
         With BALL
-            .Fill = Brushes.Red
+            .Fill = New ImageBrush(ballImage)
             .StrokeThickness = 2
-            .Stroke = Brushes.Black
-            .Width = 20
-            .Height = 20
+            .Stroke = Brushes.Pink
+            .Width = 28
+            .Height = 28
             .RenderTransform = BALL_TRANSLATE
         End With
 

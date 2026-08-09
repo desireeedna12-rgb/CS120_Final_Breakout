@@ -45,7 +45,6 @@ The Breakout WPF project opens in Visual Studio and MainWindow displays correctl
 - Commit message: Complete Tutorial Part 1 and add Island Breakout background
 - Commit ID: 0408df8
 
----
 ## Session [2]
 
 - Date: August 8, 2026
@@ -171,11 +170,12 @@ Island Breakout runs successfully with the tropical background and custom paddle
 - Document updated: DailyBuildLog.md
 - Commit message: Customize paddle with Island Breakout artwork
 - Commit ID: 2e08e20
+
 ## Session 5
 
 - Date: August 8, 2026
-- Start time: [your actual start time]
-- Stop time: [your actual stop time]
+- Start time: 10:20 pm 
+- Stop time: 10:30 pm
 - Selected pathway: Breakout
 - Goal for this session: Complete Tutorial Part 4 and implement the game ball.
 
@@ -212,5 +212,45 @@ Island Breakout opens successfully with the tropical background and custom tropi
 - Screenshot filename: Part4_Ball_Working.png
 - Document updated: DailyBuildLog.md
 - Commit message: Complete Tutorial Part 4 and implement game ball
-- Commit ID: Pending
+- Commit ID: 4f7ca47
+
+## Session [6]
+
+- Date: August 8, 2026
+- Start time: 10:36 pm
+- Stop time: 10:45 pm
+- Selected pathway: Breakout
+- Goal for this session: Replace the temporary tutorial ball appearance with the custom Island Breakout tropical ball artwork.
+
+### Work Completed
+
+- Kept the existing ball object and setup from Tutorial Part 4.
+- Added the custom tropical ball image to the project.
+- Changed the ball appearance from a solid color fill to an image-based fill.
+- Preserved the existing ball size, position, and game logic from Tutorial Part 4.
+- Tested the customized ball during gameplay.
+
+### Working Checkpoint
+
+Island Breakout runs successfully with the tropical background, custom paddle artwork, and custom tropical ball. The Island Ball appears correctly in the game window while keeping the same ball setup from Tutorial Part 4.
+
+### Problem and Evidence
+
+- Error or problem: The original tutorial ball used a solid color fill instead of the planned tropical artwork.
+- File and line, scene, object, or setting involved: MainWindow.xaml.vb / DrawBall().
+- Error message or visible behavior: The ball worked correctly but did not match the Island Breakout visual design.
+- Resource, classmate, instructor, AI assistant, or documentation used: Breakout Tutorial Part 4, custom Island Breakout artwork, and AI assistant.
+
+### Fix or Next Test
+
+- Change made: Replaced the temporary ball fill with the custom tropical ball image while keeping the same ball object and existing Tutorial Part 4 logic.
+- Result: The ball now matches the Island Breakout theme and displays correctly in the game window.
+- Next test: Begin Tutorial Part 5 and test collision detection between the ball, paddle, and game objects.
+
+### Evidence Saved
+
+- Screenshot filename: Part4_CustomTropicalBall_Working.png
+- Document updated: DailyBuildLog.md
+- Commit message: Customize ball with Island Breakout artwork
+- Commit ID: [add after commit]
 Copy the session section for each work period.
