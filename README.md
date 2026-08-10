@@ -130,6 +130,29 @@ The personal version includes:
 
 `Evidence/Session9_BricksScoreLives_Working.png`
 
+## Personal Version Explanation
+
+For my personal version of the Breakout project, I changed the original tutorial game into a tropical-themed game called **Island Breakout**.
+
+### Visual Changes
+
+I replaced the basic tutorial appearance with custom tropical artwork. I added a tropical island background, a custom tropical paddle, and a custom tropical ball. The paddle and ball still use the movement and collision systems created during the Breakout tutorials, but their appearance was changed to match my Island Breakout theme.
+
+### Gameplay Changes
+
+I also expanded the game by adding breakable bricks, a score system, a lives system, ball reset behavior, and game-over behavior.
+
+The brick system creates multiple Rectangle objects and stores them in the `BRICKS` list. When the ball collision system detects a brick, the brick is removed from the canvas and from the list.
+
+The `SCORE` variable keeps track of the player's points. Each time the ball destroys a brick, the score increases by 10 and `ScoreText` updates the score displayed on the game screen.
+
+The `LIVES` variable starts the player with three lives. When the ball goes below the bottom of the game area, one life is removed and `LivesText` updates the number of remaining lives. If the player still has lives remaining, the ball is reset so gameplay can continue.
+
+When the player reaches zero lives, the game loop stops and the game displays the player's final score.
+
+### How My Version Is Different
+
+My version keeps the programming systems learned from Breakout Tutorial Parts 1–6 while changing the visual design and expanding the gameplay. Instead of only reproducing the tutorial version, Island Breakout has its own tropical identity and additional game systems for bricks, scoring, lives, and game-over behavior.
 ---
 
 ## 5. Game Development Document
