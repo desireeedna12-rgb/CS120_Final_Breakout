@@ -256,8 +256,8 @@ Island Breakout runs successfully with the tropical background, custom paddle ar
 ## Session [7]
 
 - Date: August 8, 2026
-- Start time: 10:49 pm
-- Stop time: 11:07 pm
+- Start time: 11:07 pm
+- Stop time: 11:39 pm
 - Selected pathway: Breakout
 - Goal for this session: Complete Tutorial Part 5 and implement collision hit testing for the ball and paddle.
 
@@ -295,6 +295,7 @@ Island Breakout runs successfully with the tropical background, custom tropical 
 - Document updated: DailyBuildLog.md
 - Commit message: Complete Tutorial Part 5 and implement collision hit test
 - Commit ID:  8a3993b
+
 ## Session [8]
 
 - Date: August 8, 2026
@@ -337,6 +338,46 @@ Island Breakout runs successfully with wall collision implemented. The custom tr
 - Screenshot filename: Part6_WallCollision_Working.png
 - Document updated: DailyBuildLog.md
 - Commit message: Complete Tutorial Part 6 and implement wall collision
-- Commit ID: [ADD COMMIT ID]
+- Commit ID:b498fe9
+## Session [9]
 
+- Date: August 10, 2026
+- Start time: [ENTER START TIME]
+- Stop time: [LEAVE BLANK UNTIL FINISHED]
+- Selected pathway: Breakout
+- Goal for this session: Expand Island Breakout by adding brick gameplay, score tracking, and lives.
+
+### Work Completed
+
+- Added a brick system to Island Breakout.
+- Created multiple brick objects and displayed them near the top of the game.
+- Added brick collision detection using the existing hit-test system.
+- Fixed the right-wall collision condition so the ball moved correctly across the game area.
+- Updated the hit-test callback so only one brick is removed per collision.
+- Tested the game and confirmed that individual bricks disappear when hit by the ball.
+- Began implementing a score system for brick collisions.
+
+### Working Checkpoint
+
+Island Breakout runs successfully with the existing tropical background, custom paddle, custom ball, wall collision, and paddle collision. Bricks now appear in the game and can be removed individually when the ball hits them.
+
+### Problem and Evidence
+
+- Error or problem: After the brick system was first added, the ball became stuck near the corner and the collision system initially removed multiple bricks during one hit test.
+- File and line, scene, object, or setting involved: MainWindow.xaml.vb / Check_Collision(), MyHitTestResult(), and wall collision logic.
+- Error message or visible behavior: No compiler error. The visible behavior was incorrect ball movement and multiple bricks disappearing during collision testing.
+- Resource, classmate, instructor, AI assistant, or documentation used: Existing Breakout tutorial code and AI assistant.
+
+### Fix or Next Test
+
+- Change made: Corrected the right-wall collision comparison from <= WALL_RIGHT to >= WALL_RIGHT and added HitTestResultBehavior.Stop after a brick collision.
+- Result: The ball moves normally again and bricks are removed one at a time when hit.
+- Next test: Complete and test the score system, then add lives and game-over behavior.
+
+### Evidence Saved
+
+- Screenshot filename: Session9_BricksScoreLives_Working.png
+- Document updated: DailyBuildLog.md
+- Commit message: Add bricks score and lives to Island Breakout
+- Commit ID: [ADD AFTER COMMIT]
 Copy the session section for each work period.

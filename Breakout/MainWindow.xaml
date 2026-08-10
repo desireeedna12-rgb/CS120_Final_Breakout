@@ -5,13 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Breakout"
         mc:Ignorable="d" Height="400" Width="525" 
+    
         Title="Island Breakout" 
         KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
     <Window.Background>
         <ImageBrush ImageSource="/IslandBackground.png"/>
     </Window.Background>
     <Canvas Name="MainCanvas" Height="400" Width="525">
+    <TextBlock Name="ScoreText"
+               Text="Score: 0"
+               FontSize="18"
+               FontWeight="Bold"
+               Foreground="White"
+               Canvas.Left="15"
+               Canvas.Top="10"
+               Panel.ZIndex="10"/>
 
+     <TextBlock Name="LivesText"
+           Text="Lives: 3"
+           FontSize="18"
+           FontWeight="Bold"
+           Foreground="White"
+           Canvas.Left="430"
+           Canvas.Top="10"
+           Panel.ZIndex="10"/>
 
     </Canvas>
 </Window>

@@ -27,17 +27,62 @@ Class MyWindow
     Private WALL_RIGHT As Double = 0
     Private WALL_BOTTOM As Double = 0
 
+    'Brick system
+    Private BRICKS As New List(Of Rectangle)
+
+    'Score system
+    Private SCORE As Integer = 0
+
+    'Lives system
+    Private LIVES As Integer = 3
+
     Sub New()
         InitializeComponent()
         DrawPaddle()
         DrawBall()
+        DrawBricks()
         SETWALLS()
-        GameLoop.Interval = TimeSpan.FromMilliseconds(1)
+        GameLoop.Interval = TimeSpan.FromMilliseconds(16)
         AddHandler GameLoop.Tick, AddressOf UpdateLoop
 
         GameLoop.Start()
     End Sub
+    Private Sub DrawBricks()
 
+        Dim brickWidth As Double = 70
+        Dim brickHeight As Double = 25
+        Dim spacing As Double = 10
+
+        Dim rows As Integer = 3
+        Dim columns As Integer = 7
+
+        Dim startX As Double = 40
+        Dim startY As Double = 60
+
+        For row As Integer = 0 To rows - 1
+
+            For column As Integer = 0 To columns - 1
+
+                Dim brick As New Rectangle()
+
+                brick.Width = brickWidth
+                brick.Height = brickHeight
+                brick.Fill = System.Windows.Media.Brushes.SandyBrown
+                brick.Stroke = System.Windows.Media.Brushes.DarkGoldenrod
+                brick.StrokeThickness = 2
+
+                Canvas.SetLeft(brick, startX + column * (brickWidth + spacing))
+                Canvas.SetTop(brick, startY + row * (brickHeight + spacing))
+
+                MainCanvas.Children.Add(brick)
+
+                BRICKS.Add(brick)
+
+            Next
+
+        Next
+
+    End Sub
     Private Sub UpdateLoop(Sender As Object, e As EventArgs)
         MovePaddle()
         MoveBall()
@@ -60,29 +105,72 @@ Class MyWindow
             BALL_SPEED_X *= -1
         End If
 
-        If BALL_TRANSLATE.X <= WALL_RIGHT And BALL_SPEED_X > 0 Then
+        If BALL_TRANSLATE.X >= WALL_RIGHT And BALL_SPEED_X > 0 Then
             BALL_SPEED_X *= -1
         End If
 
         If BALL_TRANSLATE.Y > WALL_BOTTOM Then
 
-            BALL_TRANSLATE.Y = 0
-            BALL_TRANSLATE.X = 0
+            ' Lose one life
+            LIVES -= 1
+            LivesText.Text = "Lives: " & LIVES
+
+            If LIVES > 0 Then
+
+                ' Reset ball safely above the bottom
+                BALL_TRANSLATE.X = 250
+                BALL_TRANSLATE.Y = 150
+
+                ' Send ball upward
+                BALL_SPEED_X = 5
+                BALL_SPEED_Y = -5
+
+            Else
+
+                ' Stop the game when lives reach zero
+                GameLoop.Stop()
+                MessageBox.Show("Game Over! Final Score: " & SCORE)
+
+            End If
+
 
         End If
+
 
     End Sub
     Public Function MyHitTestResult(ByVal result As HitTestResult) As HitTestResultBehavior
 
         If result.VisualHit.GetType() Is GetType(Rectangle) Then
-            ' Hits the paddle here
-            BALL_SPEED_Y *= -1
-            'Code directional ball
-            'check distance of ball from center of paddle
-            Dim centerOfPaddleX As Double = PADDLE_TRANSLATE.X + CENTER_OF_PADDLE
-            Dim ballDistFromPaddleCenterX As Double = BALL_TRANSLATE.X - centerOfPaddleX
-            'will determine the angle the ball will move as it is hit by the paddle
-            BALL_SPEED_X += ballDistFromPaddleCenterX * 0.05
+
+            Dim hitRectangle As Rectangle = DirectCast(result.VisualHit, Rectangle)
+
+            If hitRectangle Is PADDLE Then
+
+                ' Hits the paddle
+                BALL_SPEED_Y *= -1
+
+                ' Code directional ball
+                ' Check distance of ball from center of paddle
+                Dim centerOfPaddleX As Double = PADDLE_TRANSLATE.X + CENTER_OF_PADDLE
+                Dim ballDistFromPaddleCenterX As Double = BALL_TRANSLATE.X - centerOfPaddleX
+
+                ' Will determine the angle the ball takes after hitting paddle
+                BALL_SPEED_X += ballDistFromPaddleCenterX / PADDLE_BUFFER
+
+            ElseIf BRICKS.Contains(hitRectangle) Then
+
+                ' Hits a brick
+                BALL_SPEED_Y *= -1
+
+                MainCanvas.Children.Remove(hitRectangle)
+                BRICKS.Remove(hitRectangle)
+
+                SCORE += 10
+                ScoreText.Text = "Score: " & SCORE
+
+                Return HitTestResultBehavior.Stop
+
+            End If
 
         End If
 
