@@ -380,5 +380,51 @@ Island Breakout runs successfully with the existing tropical background, custom 
 - Document updated: DailyBuildLog.md
 - Commit message: Add bricks score and lives to Island Breakout
 - Commit ID: a296b53
+## Session [10]
+
+- Date: August 10, 2026
+- Start time: 8:20pm
+- Stop time: 8:53 pm
+- Selected pathway: Breakout
+- Goal for this session: Customize the Island Breakout bricks and game interface to better match the tropical theme.
+
+### Work Completed
+
+- Expanded the brick layout from three rows to six rows.
+- Added different colors for each brick row using tropical-inspired colors.
+- Used pink, orange, yellow, green, blue, and purple brick rows.
+- Added a multi-hit brick system using the brick Tag property.
+- Added brick opacity changes so bricks fade after repeated hits.
+- Configured bricks to fade three times before being completely removed.
+- Kept score tracking so points are added when a brick is fully destroyed.
+- Customized the Score display with a tropical-style bordered panel.
+- Customized the Lives display with a matching tropical-style panel.
+- Replaced the numeric lives display with heart symbols.
+- Tested the updated tropical brick system and game interface during gameplay.
+- Confirmed that the game still runs with the tropical paddle, ball, background, bricks, score, and lives systems.
+
+### Working Checkpoint
+
+Island Breakout runs successfully with an expanded tropical visual design. The game now contains six rows of differently colored bricks, and each brick fades after repeated hits before disappearing completely. The Score and Lives displays were also customized to better match the tropical theme, with lives represented using heart symbols.
+
+### Problem and Evidence
+
+- Error or problem: The game became somewhat glitchy while testing collision changes and the larger brick system.
+- File and line, scene, object, or setting involved: MainWindow.xaml.vb / DrawBricks(), HitBrick(), Check_Collision(), and collision handling.
+- Error message or visible behavior: No major compiler error was present. Some gameplay movement appeared slightly laggy or glitchy during testing, but the game continued to run and the main systems remained functional.
+- Resource, classmate, instructor, AI assistant, or documentation used: Existing Island Breakout code, Game Development Document, and AI assistant.
+
+### Fix or Next Test
+
+- Change made: Added colored brick rows, multi-hit fading behavior, tropical Score and Lives panels, and heart-based lives display. Collision handling was also tested and adjusted while keeping the game functional.
+- Result: The tropical customization works during gameplay, including the six colored brick rows, brick fading, score tracking, and lives display.
+- Next test: Complete the remaining final project documentation and submission requirements without making unnecessary gameplay changes.
+
+### Evidence Saved
+
+- Screenshot filename: Session10_TropicalBricks_UI_Working.png
+- Document updated: DailyBuildLog.md
+- Commit message: Customize bricks and tropical game UI
+- Commit ID: [ADD COMMIT ID]
 
 Copy the session section for each work period.

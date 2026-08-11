@@ -12,23 +12,43 @@
         <ImageBrush ImageSource="/IslandBackground.png"/>
     </Window.Background>
     <Canvas Name="MainCanvas" Height="400" Width="525">
-    <TextBlock Name="ScoreText"
-               Text="Score: 0"
-               FontSize="18"
-               FontWeight="Bold"
-               Foreground="White"
-               Canvas.Left="15"
-               Canvas.Top="10"
-               Panel.ZIndex="10"/>
+        <Border Width="110"
+        Height="45"
+        Background="#8B5A2B"
+        BorderBrush="#F4C36A"
+        BorderThickness="3"
+        CornerRadius="10"
+        Canvas.Left="10"
+        Canvas.Top="8"
+        Panel.ZIndex="10">
 
-     <TextBlock Name="LivesText"
-           Text="Lives: 3"
-           FontSize="18"
-           FontWeight="Bold"
-           Foreground="White"
-           Canvas.Left="430"
-           Canvas.Top="10"
-           Panel.ZIndex="10"/>
+            <TextBlock Name="ScoreText"
+               Text="Score: 0"
+               FontSize="20"
+               FontWeight="Bold"
+               Foreground="Aqua"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+        </Border>
+
+        <Border Width="110"
+        Height="45"
+        Background="#8B5A2B"
+        BorderBrush="#F4C36A"
+        BorderThickness="3"
+        CornerRadius="10"
+        Canvas.Left="390"
+        Canvas.Top="8"
+        Panel.ZIndex="10">
+
+            <TextBlock Name="LivesText"
+               Text="Lives: ♥♥♥"
+               FontSize="20"
+               FontWeight="Bold"
+               Foreground="HotPink"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+        </Border>
 
     </Canvas>
 </Window>

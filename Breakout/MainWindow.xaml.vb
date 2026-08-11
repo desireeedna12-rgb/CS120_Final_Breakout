@@ -36,6 +36,9 @@ Class MyWindow
     'Lives system
     Private LIVES As Integer = 3
 
+    Private collisionCooldown As Integer = 0
+
+
     Sub New()
         InitializeComponent()
         DrawPaddle()
@@ -53,8 +56,8 @@ Class MyWindow
         Dim brickHeight As Double = 25
         Dim spacing As Double = 10
 
-        Dim rows As Integer = 3
-        Dim columns As Integer = 7
+        Dim rows As Integer = 6
+        Dim columns As Integer = 5
 
         Dim startX As Double = 40
         Dim startY As Double = 60
@@ -67,9 +70,33 @@ Class MyWindow
 
                 brick.Width = brickWidth
                 brick.Height = brickHeight
-                brick.Fill = System.Windows.Media.Brushes.SandyBrown
-                brick.Stroke = System.Windows.Media.Brushes.DarkGoldenrod
+
+                Select Case row
+
+                    Case 0
+                        brick.Fill = Brushes.DeepPink
+
+                    Case 1
+                        brick.Fill = Brushes.Orange
+
+                    Case 2
+                        brick.Fill = Brushes.Gold
+
+                    Case 3
+                        brick.Fill = Brushes.Green
+
+                    Case 4
+                        brick.Fill = Brushes.Blue
+
+                    Case 5
+                        brick.Fill = Brushes.Purple
+
+                End Select
+                brick.Stroke = System.Windows.Media.Brushes.White
                 brick.StrokeThickness = 2
+
+                brick.Tag = 0
+                brick.Opacity = 1.0
 
                 Canvas.SetLeft(brick, startX + column * (brickWidth + spacing))
                 Canvas.SetTop(brick, startY + row * (brickHeight + spacing))
@@ -83,7 +110,45 @@ Class MyWindow
         Next
 
     End Sub
+
+    Private Sub HitBrick(brick As Rectangle)
+
+        Dim hits As Integer = CInt(brick.Tag)
+
+        hits += 1
+        brick.Tag = hits
+
+        Select Case hits
+
+            Case 1
+                ' First hit
+                brick.Opacity = 0.7
+
+            Case 2
+                ' Second hit
+                brick.Opacity = 0.4
+
+            Case 3
+                ' Third hit
+                brick.Opacity = 0.2
+
+            Case Else
+                ' Fourth hit removes the brick
+                MainCanvas.Children.Remove(brick)
+                BRICKS.Remove(brick)
+
+                SCORE += 10
+                ScoreText.Text = "Score: " & SCORE
+
+        End Select
+
+    End Sub
     Private Sub UpdateLoop(Sender As Object, e As EventArgs)
+
+        If collisionCooldown > 0 Then
+            collisionCooldown -= 1
+        End If
+
         MovePaddle()
         MoveBall()
         Check_Collision()
@@ -91,11 +156,72 @@ Class MyWindow
     End Sub
 
     Private Sub Check_Collision()
+        ' Create the ball collision rectangle
+        Dim ballRect As New Rect(
+    BALL_TRANSLATE.X,
+    BALL_TRANSLATE.Y,
+    BALL.Width,
+    BALL.Height)
 
-        'Retrieve the coordinate of the ball's postion
-        Dim pt As Point = New Point(BALL_TRANSLATE.X, BALL_TRANSLATE.Y)
-        VisualTreeHelper.HitTest(MainCanvas, Nothing, New HitTestResultCallback(AddressOf MyHitTestResult), New PointHitTestParameters(pt))
+        ' Check paddle collision
+        Dim paddleRect As New Rect(
+    PADDLE_TRANSLATE.X,
+    PADDLE_TRANSLATE.Y,
+    PADDLE.Width,
+    PADDLE.Height)
 
+        If collisionCooldown = 0 AndAlso
+   BALL_SPEED_Y > 0 AndAlso
+   ballRect.IntersectsWith(paddleRect) Then
+
+            ' Bounce upward
+            BALL_SPEED_Y = -Math.Abs(BALL_SPEED_Y)
+
+            ' Move ball slightly above paddle so it does not collide repeatedly
+            BALL_TRANSLATE.Y = PADDLE_TRANSLATE.Y - BALL.Height - 1
+
+            ' Directional paddle bounce
+            Dim centerOfPaddleX As Double =
+        PADDLE_TRANSLATE.X + CENTER_OF_PADDLE
+
+            Dim ballCenterX As Double =
+        BALL_TRANSLATE.X + (BALL.Width / 2)
+
+            Dim ballDistFromPaddleCenterX As Double =
+        ballCenterX - centerOfPaddleX
+
+            BALL_SPEED_X +=
+        ballDistFromPaddleCenterX / PADDLE_BUFFER
+
+        End If
+
+        ' Check brick collisions
+        For i As Integer = BRICKS.Count - 1 To 0 Step -1
+
+            Dim brick As Rectangle = BRICKS(i)
+
+            Dim brickRect As New Rect(
+                Canvas.GetLeft(brick),
+                Canvas.GetTop(brick),
+                brick.Width,
+                brick.Height)
+
+            If collisionCooldown = 0 AndAlso ballRect.IntersectsWith(brickRect) Then
+
+                ' Bounce the ball
+                BALL_SPEED_Y *= -1
+
+                ' Fade/damage the brick
+                HitBrick(brick)
+
+                ' Prevent repeated collision with same brick
+                collisionCooldown = 5
+
+                Exit For
+
+            End If
+
+        Next
         If BALL_TRANSLATE.Y < WALL_TOP And BALL_SPEED_Y < 0 Then
             BALL_SPEED_Y *= -1
 
@@ -111,9 +237,10 @@ Class MyWindow
 
         If BALL_TRANSLATE.Y > WALL_BOTTOM Then
 
+
             ' Lose one life
             LIVES -= 1
-            LivesText.Text = "Lives: " & LIVES
+            LivesText.Text = "Lives: " & New String("♥"c, LIVES)
 
             If LIVES > 0 Then
 
@@ -159,14 +286,11 @@ Class MyWindow
 
             ElseIf BRICKS.Contains(hitRectangle) Then
 
-                ' Hits a brick
+                ' Bounce the ball
                 BALL_SPEED_Y *= -1
 
-                MainCanvas.Children.Remove(hitRectangle)
-                BRICKS.Remove(hitRectangle)
-
-                SCORE += 10
-                ScoreText.Text = "Score: " & SCORE
+                ' Fade the brick instead of removing it immediately
+                HitBrick(hitRectangle)
 
                 Return HitTestResultBehavior.Stop
 
@@ -213,7 +337,7 @@ Class MyWindow
             .Stroke = Brushes.Pink
             .StrokeThickness = 2
             .Width = 140
-            .Height = 100
+            .Height = 55
             .RenderTransform = PADDLE_TRANSLATE
             CENTER_OF_PADDLE = .Width / 2
         End With
